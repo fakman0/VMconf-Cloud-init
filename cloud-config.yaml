@@ -1,0 +1,20 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+packages:
+  - git
+  - wget
+  - curl
+  - vim
+  - nano
+
+write_files:
+  - path: /etc/hostname
+    content: yourhostname
+runcmd:
+  - hostnamectl set-hostname yourhostname
+  - [ "sed", "-i", "s/#Port 22/Port yoursshport/", "/etc/ssh/sshd_config" ]
+  - [ "/bin/bash", "-c", "echo 'youripaddrs   yourhostname' >> /etc/hosts" ]
+  - systemctl restart sshd
+  - [ "timedatectl", "set-timezone", "Europe/Istanbul" ]
+  - [ "timedatectl", "set-ntp", "true" ]
