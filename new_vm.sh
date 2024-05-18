@@ -34,8 +34,6 @@ echo 'export LANG="en_US.UTF-8"' >> /root/.bashrc
 echo 'export LC_ALL="en_US.UTF-8"' >> /root/.bashrc
 echo 'export LC_CTYPE="en_US.UTF-8"' >> /root/.bashrc
 
-rm -rf "~/configure_new_vm"
-
 if [ "$tempvar_reboot" == Y ]; then
   reboot
 fi
