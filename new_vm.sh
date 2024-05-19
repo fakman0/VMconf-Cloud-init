@@ -31,7 +31,7 @@ if [ -n "$tempvar_sshport" ]; then
   systemctl restart sshd
 fi
 
-if [ -n "$tempvar_sshpassauth" == N ]; then
+if [ -n "$tempvar_sshpassauth" == N ] || [ -z "$tempvar_sshpassauth" ]; then
   sed -i "s/.*PasswordAuthentication .*/PasswordAuthentication no/" "/etc/ssh/sshd_config"
   systemctl restart sshd
 fi
