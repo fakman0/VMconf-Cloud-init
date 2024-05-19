@@ -10,7 +10,7 @@ echo 'export LC_CTYPE="en_US.UTF-8"' >> /root/.bashrc
 read -p "Ssh Port (leave blank for default 22): " tempvar_sshport
 tempvar_sshpassauth=N
 read -p "Ssh PasswordAuthentication Close:N/Open:Y (leave blank for default N):" tempvar_sshpassauth
-if [ -n "$tempvar_sshpassauth" -eq N ]; then
+if [ -n "$tempvar_sshpassauth" == N ]; then
   if [ -s "~/.ssh/authorized_keys" ]; then
   echo "There is no authorized ssh-key registered to the user, if you continue you may lose your ssh access."
   read -p "Please enter ssh-key (leave blank to continue): " tempvar_sshkey
@@ -51,6 +51,6 @@ apt install git wget curl vim nano systemd-timesyncd -y
 
 timedatectl set-ntp true
 
-if [ "$tempvar_reboot" -eq Y ]; then
+if [ "$tempvar_reboot" == Y ]; then
   reboot
 fi
