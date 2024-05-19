@@ -12,10 +12,6 @@ read -p "Hostname (leave blank for default $(hostname)): " tempvar_hostname
 read -p "Reboot after done Y/N (leave blank for default Y): " tempvar_reboot
 ipaddr=$(hostname -I | awk '{print $1}')
 
-
-apt update && apt upgrade -y
-apt install git wget curl vim nano systemd-timesyncd -y
-
 if [ -n "$tempvar_hostname" ]; then
   hostnamectl set-hostname $tempvar_hostname
 fi
@@ -34,6 +30,9 @@ fi
 
 timedatectl set-timezone "Europe/Istanbul"
 timedatectl set-ntp true
+
+apt update && apt upgrade -y
+apt install git wget curl vim nano systemd-timesyncd -y
 
 if [ "$tempvar_reboot" == Y ]; then
   reboot
